@@ -105,7 +105,6 @@
             const url = 'https://proyecto2api.herokuapp.com/';
             const link = url+'/registro_paciente';
             const linkLocal = 'http://localhost:5000/registro_paciente' 
-            var url = 'https://example.com/profile';
             var data = {
                 "nombre" : name,
                 "apellido" : lastName,
@@ -128,7 +127,7 @@
                     alert(dato.mensaje)
                 }
             }).catch(function(error){
-                console.log(error);
+            alert(error);
             });
         
             /*
