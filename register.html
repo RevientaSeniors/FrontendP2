@@ -104,33 +104,30 @@
             
             const url = 'https://proyecto2api.herokuapp.com';
             const link = url+'/registro_paciente';
-            const linkLocal = 'http://localhost:5000/registro_paciente'
-            
-            var apiUrl= link 
-            var data = { 
+            const linkLocal = 'http://localhost:5000/registro_paciente' 
+
+            fetch(link,{ 
+             method: 'POST',  
+             headers: { 
                 "nombre" : name,
                 "apellido" : lastName,
                 "fechaNacimiento" : dateF,
                 "sexo": genero,
                 "nombreUsuario" : userName,
                 "contrasena" : password,
-                "telefono" : telephone
-             } 
-
-            fetch(apiUrl,{ 
-             method: 'POST',  
-             headers: { 
-             'Content-type' : 'text/json' 
+                "telefono" : telephone 
           }, 
           body: JSON.stringify(data) 
         }) 
-        .then(response =>  
-    	    response.json() 
-        ) 
-        .then(data => {  
-            console.log(data)
-            alert(data) 
-        }) 
+        fetch(link).then((resp) => resp.json()).then(function(data){
+                alert(data.mensaje)
+                if(data.estado ==1){
+                    window.location.href = url
+                }
+            }).catch(function(error){
+                console.log(error);
+            });
+        
         
             /*
             let xmlhttp = new XMLHttpRequest();   // El objeto que te provee el browser 
