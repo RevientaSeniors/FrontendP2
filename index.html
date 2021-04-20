@@ -74,12 +74,12 @@
         function login(){
             const user = document.getElementById("exampleInputEmail").value;
             const password = document.getElementById("exampleInputPassword").value;
-            const url = 'https://tarea4ipc1.herokuapp.com/';
+            const url = 'https://proyecto2api.herokuapp.com/';
             const link = url+'login?nombreUsuario='+user+'&contrasena='+password;
             fetch(link).then((resp) => resp.json()).then(function(data){
                 alert(data.mensaje)
                 if(data.estado ==1){
-                    window.location.href = url
+                    window.location.href = "paciente.html"
                 }
             }).catch(function(error){
                 console.log(error);

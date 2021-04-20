@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Usuario paciente</title>
+    <title>Configuraciones</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -43,9 +43,9 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="paciente.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Inicio Login</span></a>
+                    <span>Inicio</span></a>
             </li>
 
             <!-- Heading -->
@@ -60,7 +60,7 @@
                     <span>Solicitar una cita</span>
                 </a>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
+                <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link" href="confiPaciente.html">
                     <i class="fas fa-fw fa-wrench"></i>
@@ -108,6 +108,7 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
+
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
@@ -118,8 +119,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -140,76 +140,61 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Información de Uso</h1>
-                    </div>
+                    <h1 class="h3 mb-4 text-gray-800">CONFIGURACIÓN DE USUARIO</h1>
 
-                    <!-- Content Row -->
                     <div class="row">
 
-                        <!-- Content Column -->
-                        <div class="col-lg-6 mb-4">
+                        <div class="col-lg-6">
 
-                            <!-- Solicitar una cita -->
+                            <!-- Circle Buttons -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Solicitar una cita</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Formulario</h6>
                                 </div>
                                 <div class="card-body">
-                                    <p>Al momento de tener una cuenta usted puede solicitar una cita y queda en estado pendiente hasta que un
-                                         doctor o enfermera la acepte o la rechaze
-                                         <div class="mb-2">
-                                            <code>El paciente no puede solicitar una cita nueva si ya tiene una en estado Pendiente o Aceptada</code>
+                                    <br>
+                                        <div class="form-group">
+                                            <div class="mb-3 mb-sm-0">
+                                                <input type="text" class="form-control form-control-user" id="exampleFirstName"
+                                                placeholder="Nombre">
+                                                </div>
                                         </div>
-                                        </p>
+                                        <div class="form-group">
+                                            <div class="mb-3 mb-sm-0">
+                                                <input type="text" class="form-control form-control-user" id="exampleLastName"
+                                                placeholder="Apelldio">
+                                                </div>
                                         </div>
+                                        <div class="form-group">
+                                        <div class="mb-3 mb-sm-0">
+                                            <label style="padding-left: 15px;" for="start">Fecha de Naciento</label>
+                                        <input type="date" id="start" name="trip-start" value="dd/mm/aaaa" min="1900-01-01" max="2021-12-31" class="form-control form-control-user" placeholder="Fecha de Nacimiento">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="mb-3 mb-sm-0">
+                                                <input type="text" class="form-control form-control-user" id="exampleUserName"
+                                                placeholder="Nombre de Usuario">
+                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="mb-3 mb-sm-0">
+                                                <input type="text" class="form-control form-control-user" id="examplepassword"
+                                                placeholder="contraseña">
+                                                </div>
+                                        </div>
+                                    <a href="#" class="btn btn-success btn-circle" style="margin-left: 440px;">
+                                        <i class="fas fa-check"></i>
+                                    </a>
+                                </div>
                             </div>
 
-                            <!-- Modificar Perfil -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Modificar Perfil</h6>
-                                </div>
-                                <div class="card-body">
-                                    <p>El usuario podrá modificar de su perfil los siguientes datos:</p>
-                                    <h4 class="small font-weight-bold">Nombre</h4>
-                                    <h4 class="small font-weight-bold">Apellido</h4>
-                                    <h4 class="small font-weight-bold">Contraseña</h4>
-                                    <h4 class="small font-weight-bold">Fecha de Nacimiento</h4>
-                                    <h4 class="small font-weight-bold">Nombre de Usuario</h4>
-                                </div>
-                            </div>
+
+                        </div>
+
                     </div>
-                    <div class="col-lg-6 mb-4">
-                        
-                        <!-- Approach -->
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Estado de la cita</h6>
-                            </div>
-                            <div class="card-body">
-                                <p>Usted puede verificar el estado en el que se encuentra la cita, recuerde que puede estar en:</p>
-                                <h4 class="small font-weight-bold">Espera</h4>
-                                <h4 class="small font-weight-bold">Aceptada</h4>
-                                <h4 class="small font-weight-bold">Rechazada</h4>
-                            </div>
-                        </div>
-                        <!-- Comprar Medicina -->
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Comprar Medicina</h6>
-                            </div>
-                            <div class="card-body">
-                                <p>Usted como paciente puede comprar medicina en el sistema generando su pedido en formato PDF en el apartado de "Comprar Medicina"
-                                    </p>
-                                    </div>
-                        </div>
 
                 </div>
-
-                </div>
-                
-                
                 <!-- /.container-fluid -->
 
             </div>
@@ -247,10 +232,10 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Seleccionó "Cerrar Sesión" ¿Está seguro de querer cerrar sesión? </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Cerrar Sesión</a>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
                 </div>
             </div>
         </div>
@@ -265,13 +250,6 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
 
 </body>
 
