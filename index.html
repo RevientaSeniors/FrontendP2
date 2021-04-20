@@ -51,9 +51,7 @@
                                             <input type="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Contraseña">
                                         </div>
-                                        <a class="btn btn-primary btn-user btn-block"
-                                            style="font-size: 1.2rem;line-height: 1.1;letter-spacing: 0em;font-style: italic;"
-                                            onclick="login()">
+                                        <a class="btn btn-primary btn-user btn-block" style="font-size: 1.2rem;line-height: 1.1;letter-spacing: 0em;font-style: italic;" onclick="login()">
                                             Iniciar Sesión
                                         </a>
                                     </form>
@@ -73,26 +71,20 @@
 
     </div>
     <script>
-        const user = document.getElementById("exampleInputEmail").value;
-        const password = document.getElementById("exampleInputPassword").value;
-        
-        function login() {
+        function login(){
+            const user = document.getElementById("exampleInputEmail").value;
+            const password = document.getElementById("exampleInputPassword").value;
             const url = 'https://proyecto2api.herokuapp.com/';
-            const link = url + 'login?nombreUsuario=' + user + '&contrasena=' + password;
-            fetch(link).then((resp) => resp.json()).then(function (data) {
-                
-                if (data.estado == 1) {
-                    alert(data.mensaje)
+            const link = url+'login?nombreUsuario='+user+'&contrasena='+password;
+            fetch(link).then((resp) => resp.json()).then(function(data){
+                alert(data.mensaje)
+                if(data.estado ==1){
                     window.location.href = "paciente.html"
-                }else{
-                    alert(link +" Usuario:" +user +"contra: "+password)
-                    alert(data.mensaje)
                 }
-            }).catch(function (error) {
+            }).catch(function(error){
                 console.log(error);
             });
-
-
+        
         }
     </script>
     <!-- Bootstrap core JavaScript-->
