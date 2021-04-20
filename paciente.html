@@ -55,7 +55,7 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="citaPaciente.html">
+                <a class="nav-link" href="citaPaciente.html" onclick="llamarPaciente()">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Solicitar una cita</span>
                 </a>
@@ -255,7 +255,25 @@
             </div>
         </div>
     </div>
+    <script>
+        function llamarPaciente(){
+            
+            const url = 'https://proyecto2api.herokuapp.com/';
+            const link = url + 'datos_paciente';
+            fetch(link).then((resp) => resp.json()).then(function (data) {
+                alert(data.nombre+ "siuuu")
+                alert(data.apellido)
+            }).catch(function (error) {
+                console.log(error);
+            });
 
+
+         
+        }
+
+
+
+    </script>
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

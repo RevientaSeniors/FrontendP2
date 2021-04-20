@@ -124,10 +124,10 @@
             }).then(res => res.json()).then(function(dato){
                 
                 if(dato.estado ==1){
-                   alert(dato.estado)
+                   alert(dato.mensaje)
                     window.location.href = "index.html"
                 }else{
-                    alert(dato.estado)
+                    alert(dato.mensaje)
                 }
                 
             }).catch(function(error){
