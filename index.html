@@ -80,9 +80,13 @@
             const url = 'https://proyecto2api.herokuapp.com/';
             const link = url + 'login?nombreUsuario=' + user + '&contrasena=' + password;
             fetch(link).then((resp) => resp.json()).then(function (data) {
-                alert(data.mensaje)
+                
                 if (data.estado == 1) {
+                    alert(data.mensaje)
                     window.location.href = "paciente.html"
+                }else{
+                    alert(link +" Usuario:" +user +"contra: "+password)
+                    alert(data.mensaje)
                 }
             }).catch(function (error) {
                 console.log(error);
