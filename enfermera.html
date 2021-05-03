@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Cita</title>
+    <title>Usuario Enfermera</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -19,7 +19,18 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <script>
+         const link = 'https://proyecto2api.herokuapp.com/usuario_dentro';
+        fetch(link).then((resp) => resp.json()).then(function (data) {
+            let nUsuario = document.getElementById("userDropdown");
+            let tUsuario = `<span class="mr-2 d-none d-lg-inline text-gray-600 small">${data[0].nombre+" "+data[0].apellido}</span>`;
+            
+            nUsuario.innerHTML += tUsuario;
 
+        }).catch(function (error) {
+            console.log(error);
+        });
+    </script>
 </head>
 
 <body id="page-top">
@@ -43,7 +54,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="paciente.html">
+                <a class="nav-link" href="enfermera.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Inicio</span></a>
             </li>
@@ -55,32 +66,34 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="citaPaciente.html">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Solicitar una cita</span>
-                </a>
-
-                <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link" href="confiPaciente.html">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>Modificar Perfil</span>
+                    <span>Listado de Citas</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Citas:</h6>
+                        <a class="collapse-item" href="citaPendienteEnfermera.html">Citas pendientes</a>
+                        <a class="collapse-item" href="citaAceptadaEnfermera .html">Citas Aceptadas</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link" href="generarFactura.html" >
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Generar Facturas</span>
                 </a>
             </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="comprarMedicina.html">
+                <a class="nav-link" href="confiEnfermera.html">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Comprar Medicina</span>
+                    <span>Modicar Perfil</span>
                 </a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="estadoCita.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Estado de la cita</span></a>
             </li>
 
             <!-- Divider -->
@@ -108,7 +121,6 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
@@ -118,6 +130,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -138,45 +151,57 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">SOLICITAR UNA CITA</h1>
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Información de Uso</h1>
+                    </div>
 
+                    <!-- Content Row -->
                     <div class="row">
 
-                        <div class="col-lg-6">
+                        <!-- Content Column -->
+                        <div class="col-lg-6 mb-4">
 
-                            <!-- Circle Buttons -->
+                            <!-- Solicitar una cita -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Formulario</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Listado de citas</h6>
                                 </div>
                                 <div class="card-body">
-                                    <br>
-                                        <div class="form-group row">
-                                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <label style="padding-left: 15px;" for="start">Fecha de la cita</label>
-                                            <input type="date" id="fechal" name="trip-start" value="" min="1900-01-01" max="2021-12-31" class="form-control form-control-user">
-                                                </div>
-                                            <div class="col-sm-6">
-                                                <label style="padding-left: 15px;" for="start">Hora</label>
-                                                <input type="time" class="form-control form-control-user" name="eta" id="exampleHora" value="" >
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <textarea type="text" class="form-control form-control-user" id="motivoc"
-                                                placeholder="Motivo de la cita"></textarea>
-                                        </div>
-                                    <a class="btn btn-success btn-circle" style="margin-left: 440px;" onclick="solicitud()">
-                                        <i class="fas fa-check"></i>
-                                    </a>
+                                    <p>Como Medico o Enfermera usted podrá ver un listado de citas pendientes de aprobación o denegación, así mismo podra ver las citas aceptadas.</p>
                                 </div>
                             </div>
 
-
+                            <!-- Modificar Perfil -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Modificar Perfil</h6>
+                                </div>
+                                <div class="card-body">
+                                    <p>El usuario podrá modificar de su perfil los siguientes datos:</p>
+                                    <h4 class="small font-weight-bold">Nombre</h4>
+                                    <h4 class="small font-weight-bold">Apellido</h4>
+                                    <h4 class="small font-weight-bold">Contraseña</h4>
+                                    <h4 class="small font-weight-bold">Fecha de Nacimiento</h4>
+                                    <h4 class="small font-weight-bold">Nombre de Usuario</h4>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="col-lg-6 mb-4">
+                        <!-- Comprar Medicina -->
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Generar Facturas</h6>
+                            </div>
+                            <div class="card-body">
+                                <p>Cuando haya culminado el proceso de evaluación del medico al cliente(paciente) usted prodrá generar un factura en formato PDF</p>
+                                    </div>
                         </div>
 
-                    </div>
+                </div>
 
                 </div>
+                
+                
                 <!-- /.container-fluid -->
 
             </div>
@@ -214,41 +239,15 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Seleccionó "Cerrar Sesión" ¿Está seguro de querer cerrar sesión? </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="login.html">Cerrar Sesión</a>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        function solicitud(){
-            const texto = document.getElementById("motivoc").value;
-            const fecha = document.getElementById("fechal").value;
-            const hora = document.getElementById("exampleHora").value;
-            
-            const url = 'https://proyecto2api.herokuapp.com/';
-            const link = url+'registro_cita'; 
-            var data = {
-                "fecha" : fecha,
-                "hora" : hora,
-                "descripcion" : texto
-            };
 
-            fetch(link, {
-            method: 'POST', // or 'PUT'
-            body: JSON.stringify(data), // data can be `string` or {object}!
-            headers:{
-            'Content-Type': 'application/json'
-            }
-            }).then(res => res.json()).then(function(dato){
-                   alert(dato.mensaje)
-            }).catch(function(error){
-            alert(error);
-            });
-        }
-    </script>
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -258,6 +257,13 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script>
 
 </body>
 

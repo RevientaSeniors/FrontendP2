@@ -95,6 +95,7 @@
             const name = document.getElementById("exampleFirstName").value;
             const lastName = document.getElementById("exampleLastName").value;
             const dateF = document.getElementById("start").value;
+            const fechaF = convertDateFormat(dateF);
             const  genero= document.getElementById("genero").value;
             const userName = document.getElementById("userName").value;
             const password = document.getElementById("exampleInputPassword").value;
@@ -108,7 +109,7 @@
             var data = {
                 "nombre" : name,
                 "apellido" : lastName,
-                "fechaNacimiento" : dateF,
+                "fechaNacimiento" : fechaF,
                 "sexo": genero,
                 "nombreUsuario" : userName,
                 "contrasena" : password,
@@ -133,7 +134,10 @@
             }).catch(function(error){
             alert(error);
             });
-        
+            function convertDateFormat(string) {
+                    var info = string.split('-').reverse().join('/');
+                    return info;
+        }
             /*
             let xmlhttp = new XMLHttpRequest();   // El objeto que te provee el browser 
             xmlhttp.open("POST", link); // le dices que quieres hacer un POST y a que path relativo 

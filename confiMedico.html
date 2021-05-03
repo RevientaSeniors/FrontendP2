@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Configuraciones-Pacientes</title>
+    <title>Configuraciones-Medicos</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -74,11 +74,10 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="paciente.html">
+                <a class="nav-link" href="medico.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Inicio</span></a>
             </li>
-
             <!-- Heading -->
             <div class="sidebar-heading">
                 Interfaz
@@ -86,34 +85,35 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="citaPaciente.html">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Solicitar una cita</span>
-                </a>
-
-                <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link" href="confiPaciente.html">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>Modificar Perfil</span>
+                    <span>Listado de Citas</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Citas:</h6>
+                        <a class="collapse-item" href="citaPendienteMedico.html">Citas pendientes</a>
+                        <a class="collapse-item" href="citaAceptadaMedico.html">Citas completadas</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link" href="#" >
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Creación de recetas</span>
                 </a>
             </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="comprarMedicina.html">
+                <a class="nav-link" href="confiMedico.html">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Comprar Medicina</span>
+                    <span>Modicar Perfil</span>
                 </a>
             </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="estadoCita.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Estado de la cita</span></a>
-            </li>
-
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -270,11 +270,13 @@
         </div>
     </div>
     <script>
+        var nombreAnterior ="";
         const link = 'https://proyecto2api.herokuapp.com/usuario_dentro';
         fetch(link).then((resp) => resp.json()).then(function (data) {
             let nUsuario = document.getElementById("userDropdown");
            let tUsuario = `<span class="mr-2 d-none d-lg-inline text-gray-600 small">${data[0].nombre+" "+data[0].apellido}</span>`;
            nUsuario.innerHTML += tUsuario;
+            nombreAnterior = data[0].nombreUsuario;
             var inputNombre = document.getElementById("lNombre");
             var inputApellido = document.getElementById("lApellido");
             var inputFecha = document.getElementById("lFecha");
@@ -293,8 +295,6 @@
                     var info = string.split('/').reverse().join('-');
                     return info;
         }
-    </script>
-    <script>
         function editar() {
             const name = document.getElementById("lNombre").value;
             const lastName = document.getElementById("lApellido").value;
@@ -303,20 +303,19 @@
             const userName = document.getElementById("lNombreUsuario").value;
             const password = document.getElementById("lContra").value;
             const telephone = "";
+            const especialidad = "";
             
-            
-            
-            
-            const link = 'https://proyecto2api.herokuapp.com/editar_paciente';
+            const link = 'https://proyecto2api.herokuapp.com/editar_medico';
             var data = {
                 "nombre" : name,
                 "apellido" : lastName,
                 "fechaNacimiento" : dateF,
                 "sexo": genero,
                 "nombreUsuario" : userName,
+                "especialidad": especialidad,
                 "contrasena" : password,
                 "telefono" : telephone,
-                "nombreAnterior": ""
+                "nombreAnterior": nombreAnterior
             };
             
             fetch(link, {
@@ -327,14 +326,14 @@
             }
             }).then(res => res.json()).then(function(dato){
                 
-             alert(dato.mensaje)
-                
+                alert(dato.mensaje)
                 
             }).catch(function(error){
             alert(error);
             });
         }
     </script>
+   
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

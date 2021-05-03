@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Cita</title>
+    <title>Estado Cita</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -19,7 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
+    
 </head>
 
 <body id="page-top">
@@ -138,43 +138,38 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">SOLICITAR UNA CITA</h1>
+                    <h1 class="h3 mb-4 text-gray-800">ESTADO DE LA CITA</h1>
 
-                    <div class="row">
+                    <div class="col-lg-6">
 
-                        <div class="col-lg-6">
+                        <!-- Circle Buttons -->
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Datos</h6>
+                            </div>
+                            <div class="card-body">
+                                <br>
+                                <div class="table-responsive">
 
-                            <!-- Circle Buttons -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Formulario</h6>
-                                </div>
-                                <div class="card-body">
-                                    <br>
-                                        <div class="form-group row">
-                                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <label style="padding-left: 15px;" for="start">Fecha de la cita</label>
-                                            <input type="date" id="fechal" name="trip-start" value="" min="1900-01-01" max="2021-12-31" class="form-control form-control-user">
-                                                </div>
-                                            <div class="col-sm-6">
-                                                <label style="padding-left: 15px;" for="start">Hora</label>
-                                                <input type="time" class="form-control form-control-user" name="eta" id="exampleHora" value="" >
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <textarea type="text" class="form-control form-control-user" id="motivoc"
-                                                placeholder="Motivo de la cita"></textarea>
-                                        </div>
-                                    <a class="btn btn-success btn-circle" style="margin-left: 440px;" onclick="solicitud()">
-                                        <i class="fas fa-check"></i>
-                                    </a>
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead id="tablaEncabezado">
+
+                                        </thead>
+                                        <tfoot id="tablaEncabezado">
+                                            
+                                        </tfoot>
+                                        <tbody id="tablaCita">
+
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-
-
                         </div>
 
+
                     </div>
+
+
 
                 </div>
                 <!-- /.container-fluid -->
@@ -223,31 +218,25 @@
         </div>
     </div>
     <script>
-        function solicitud(){
-            const texto = document.getElementById("motivoc").value;
-            const fecha = document.getElementById("fechal").value;
-            const hora = document.getElementById("exampleHora").value;
+        const link = 'https://proyecto2api.herokuapp.com/mostrar_cita';
+        fetch(link).then((resp) => resp.json()).then(function (data) {
+            let tableHead = document.getElementById("tablaEncabezado")
+            let tableBody = document.getElementById("tablaCita");
+            /*let nUsuario = document.getElementById("userDropdown");
+            let tUsuario = `<span class="mr-2 d-none d-lg-inline text-gray-600 small">${data[0].nombre + " " + data[0].apellido}</span>`;
+            nUsuario.innerHTML += tUsuario;*/
             
-            const url = 'https://proyecto2api.herokuapp.com/';
-            const link = url+'registro_cita'; 
-            var data = {
-                "fecha" : fecha,
-                "hora" : hora,
-                "descripcion" : texto
-            };
+            let tFecha = `<th>${data[0].fecha}</th>`;
+            let tHora = `<th>${data[0].hora}</th>`;
+            let tDescripcion = `<th>${data[0].descripcion}</th>`;
+            let tEstado = `<th>${data[0].estado}</th>`;
+            tableHead.innerHTML = `<tr><th>Fecha</th><th>Hora</th><th>Descripción</th><th>Estado</th></tr>`;
+            tableBody.innerHTML =`<tr>${tFecha + tHora + tDescripcion+ tEstado}</tr>`;
+           
+        }).catch(function (error) {
+            console.log(error);
+        });
 
-            fetch(link, {
-            method: 'POST', // or 'PUT'
-            body: JSON.stringify(data), // data can be `string` or {object}!
-            headers:{
-            'Content-Type': 'application/json'
-            }
-            }).then(res => res.json()).then(function(dato){
-                   alert(dato.mensaje)
-            }).catch(function(error){
-            alert(error);
-            });
-        }
     </script>
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
